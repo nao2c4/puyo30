@@ -1,0 +1,34 @@
+[project]
+name = "puyo30"
+version = "0.1.0"
+description = "ぷよぷよ 30 本先取の勝率を計算します。"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "sympy>=1.13.3",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.0.1",
+    "ruff>=0.8.4",
+]
+
+[tool.ruff]
+# Group violations by containing file.
+output-format = "grouped"
+# Allow lines to be as long as 100.
+line-length = 100
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "ANN101",  # [[deprecated]]
+    "ANN102",  # [[deprecated]]
+    "COM812",  # [[conflicted]]
+    "ISC001",  # [[conflicted]]
+    "D415",    # Period
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
