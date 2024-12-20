@@ -77,6 +77,26 @@ class Expr:
             + self.three * other.zero,
         )
 
+    def __str__(self) -> str:
+        """式を文字列に変換。
+
+        係数の符号に注意する。
+
+        Returns:
+            str: 式を表す文字列。
+        """
+
+        def sign(num: Fraction) -> str:
+            """符号を返す。"""
+            return "+" if num >= 0 else "-"
+
+        return (
+            f"{self.zero} "
+            f"{sign(self.one)} {abs(self.one)} (p - 1/2) "
+            f"{sign(self.two)} {abs(self.two)} (p - 1/2)^2 "
+            f"{sign(self.three)} {abs(self.three)} (p - 1/2)^3"
+        )
+
     def float(self) -> FloatExpr:
         """浮動小数点数に変換。
 
@@ -106,6 +126,24 @@ class FloatExpr(Expr):
     one: float
     two: float
     three: float
+
+    def __str__(self) -> str:
+        """式を文字列に変換。
+
+        Returns:
+            str: 式を表す文字列。
+        """
+
+        def sign(num: float) -> str:
+            """符号を返す。"""
+            return "+" if num >= 0 else "-"
+
+        return (
+            f"{self.zero:.4f} "
+            f"{sign(self.one)} {abs(self.one):.4f} (p - 1/2) "
+            f"{sign(self.two)} {abs(self.two):.4f} (p - 1/2)^2 "
+            f"{sign(self.three)} {abs(self.three):.4f} (p - 1/2)^3"
+        )
 
 
 def p() -> Expr:
