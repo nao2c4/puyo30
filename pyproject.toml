@@ -23,8 +23,6 @@ line-length = 100
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-    "ANN101",  # [[deprecated]]
-    "ANN102",  # [[deprecated]]
     "COM812",  # [[conflicted]]
     "ISC001",  # [[conflicted]]
     "D415",    # Period
