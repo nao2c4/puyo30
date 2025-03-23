@@ -3,9 +3,8 @@ name = "puyo30"
 version = "0.1.0"
 description = "ぷよぷよ 30 本先取の勝率を計算します。"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
-    "sympy>=1.13.3",
 ]
 
 [dependency-groups]
