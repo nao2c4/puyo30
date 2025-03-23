@@ -35,7 +35,7 @@ class Expr:
         Returns:
             Self: 加算結果。
         """
-        return Expr(
+        return self.__class__(
             self.zero + other.zero,
             self.one + other.one,
             self.two + other.two,
@@ -51,7 +51,7 @@ class Expr:
         Returns:
             Self: 減算結果。
         """
-        return Expr(
+        return self.__class__(
             self.zero - other.zero,
             self.one - other.one,
             self.two - other.two,
@@ -67,7 +67,7 @@ class Expr:
         Returns:
             Self: 乗算結果。
         """
-        return Expr(
+        return self.__class__(
             self.zero * other.zero,
             self.zero * other.one + self.one * other.zero,
             self.zero * other.two + self.one * other.one + self.two * other.zero,
