@@ -5,7 +5,7 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, PositiveInt
 
-from src import prob
+from win_prob import prob
 
 # ruff: noqa: T201
 
