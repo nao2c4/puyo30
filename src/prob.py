@@ -180,5 +180,5 @@ def prob(win: int, lose: int, goal: int = 30) -> Expr:
     if win == goal:
         return Expr(Fraction(1), Fraction(0), Fraction(0), Fraction(0))
     if lose == goal:
-        return Expr(Fraction(0), Fraction(0), Fraction(0), Fraction(1))
+        return Expr(Fraction(0), Fraction(0), Fraction(0), Fraction(0))
     return p() * prob(win + 1, lose, goal) + q() * prob(win, lose + 1, goal)
