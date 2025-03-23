@@ -1,29 +1,35 @@
 """コマンドラインで勝率を計算する。"""
 
 import argparse
+from typing import Self
+
+from pydantic import BaseModel, ConfigDict, PositiveInt
 
 from src import prob
 
 # ruff: noqa: T201
 
 
-class Cli:
+class Cli(BaseModel):
     """コマンドラインインターフェース。
 
     Attributes:
-        args (argparse.Namespace): コマンドライン引数。
+        goal (int): ゲーム先取数。
+        fraction (bool): 分数で出力するかどうか。
     """
 
-    def __init__(self) -> None:
-        """初期化。"""
-        self.parse_args()
+    model_config = ConfigDict(frozen=True)
 
-    def parse_args(self) -> None:
+    goal: PositiveInt = 30
+    fraction: bool = False
+
+    @classmethod
+    def parse_args(cls) -> Self:
         """コマンドライン引数をパースして返す。"""
         parser = argparse.ArgumentParser(description="Calculate the probability of winning.")
         parser.add_argument("-n", "-g", "--goal", type=int, default=30, help="The number of goals.")
         parser.add_argument("--fraction", action="store_true", help="Output as a fraction.")
-        self.args = parser.parse_args()
+        return cls(**vars(parser.parse_args()))
 
     def run(self) -> None:
         """対話で勝数と負数を入力して勝率を計算する。
@@ -62,11 +68,11 @@ class Cli:
 
     def prob(self, win: int, lose: int) -> None:
         """勝数と負数から勝率を計算して出力する。"""
-        p = prob(win, lose, self.args.goal)
-        if self.args.fraction:
+        p = prob(win, lose, self.goal)
+        if self.fraction:
             print(f"[{win:>2d}-{lose:<2d}] {p}")
         print(f"[{win:>2d}-{lose:<2d}] {p.float()}")
 
 
 if __name__ == "__main__":
-    Cli().run()
+    Cli.parse_args().run()
